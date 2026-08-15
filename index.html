@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4f5f7">
+<title>Digitaler Fischerausweis</title>
+<style>
+:root{
+  --bg:#f2f3f5;
+  --card:#fff;
+  --text:#17181b;
+  --muted:#6f747b;
+  --line:#e5e7ea;
+  --green:#177245;
+  --green-bg:#e8f6ee;
+  --blue:#0a66ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;color:var(--text);background:var(--bg)}
+body{display:flex;justify-content:center;padding:24px 14px 40px}
+.page{width:min(100%,520px)}
+.wallet-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;height:54px;border-radius:14px;border:0;
+  background:#050505;color:#fff;font-size:18px;font-weight:700;
+  box-shadow:0 6px 18px rgba(0,0,0,.12);cursor:pointer;
+  margin:0 0 18px;
+}
+.wallet-icon{
+  width:28px;height:21px;border-radius:5px;background:linear-gradient(180deg,#20b95b 0 20%,#ffcd38 20% 40%,#ef5b58 40% 60%,#55a9f4 60% 80%,#7b58cf 80%);
+  position:relative;display:inline-block;
+}
+.wallet-icon:after{content:"";position:absolute;width:13px;height:13px;border-radius:50%;background:#fff;left:7px;top:4px;opacity:.9}
+.card{
+  overflow:hidden;background:var(--card);border-radius:22px;
+  box-shadow:0 10px 35px rgba(0,0,0,.10);
+  border:1px solid rgba(0,0,0,.05);
+}
+.header{
+  min-height:76px;display:flex;align-items:center;gap:14px;padding:16px 20px;
+  border-bottom:1px solid var(--line);
+}
+.logo{
+  width:42px;height:42px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#67d5b5 0 18%,transparent 19%),
+             conic-gradient(from 30deg,#1f8fff,#55cfa7,#f0c34e,#ef6461,#a95ed6,#1f8fff);
+  flex:none;
+}
+.org{font-size:16px;font-weight:750}
+.subtitle{font-size:12px;color:var(--muted);margin-top:2px}
+.hero{
+  padding:18px 20px 0;
+}
+.hero-image{
+  width:100%;aspect-ratio:16/7;object-fit:cover;border-radius:13px;
+  display:block;background:#dfe3e7;
+}
+.details{
+  display:grid;grid-template-columns:1.35fr .9fr;gap:18px;padding:18px 20px 4px;
+}
+.label{font-size:12px;font-weight:800;letter-spacing:.04em;color:#666b72;text-transform:uppercase}
+.value{font-size:21px;font-weight:650;margin-top:4px}
+.small-value{font-size:17px;font-weight:650;margin-top:4px}
+.status{
+  margin:18px 20px 0;padding:12px 14px;border-radius:12px;
+  background:var(--green-bg);color:var(--green);font-weight:750;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.check{width:22px;height:22px;border-radius:50%;background:var(--green);color:white;display:grid;place-items:center;font-size:13px}
+.qr-wrap{text-align:center;padding:20px 20px 10px}
+.qr-wrap img{width:min(72vw,260px);max-width:260px;display:block;margin:auto}
+.number{font-size:14px;margin-top:10px;color:#333}
+.footer{padding:10px 20px 20px;text-align:center;color:#888;font-size:11px}
+.info{
+  margin-top:14px;padding:16px 18px;background:white;border-radius:16px;
+  border:1px solid var(--line);font-size:13px;color:#5e6369;line-height:1.45;
+}
+@media(min-width:700px){
+  body{padding-top:45px}
+  .page{width:480px}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <button class="wallet-btn" id="walletButton" type="button" aria-label="Zu Wallet hinzufügen">
+    <span class="wallet-icon"></span>
+    <span id="walletText">Hinzufügen zu Apple Wallet</span>
+  </button>
+
+  <section class="card">
+    <header class="header">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <div class="org">Fischereiverband</div>
+        <div class="subtitle">Digitaler Fischerausweis</div>
+      </div>
+    </header>
+
+    <div class="hero">
+      <img class="hero-image" src="assets/photo-placeholder.jpg" alt="Passfoto">
+    </div>
+
+    <div class="details">
+      <div>
+        <div class="label">Inhaber</div>
+        <div class="value">Max Mustermann</div>
+      </div>
+      <div>
+        <div class="label">Gültig bis</div>
+        <div class="small-value">31.12.2026</div>
+      </div>
+    </div>
+
+    <div class="details">
+      <div>
+        <div class="label">Ausweis-Nr.</div>
+        <div class="small-value">FA-2026-00123</div>
+      </div>
+      <div>
+        <div class="label">Geburtsdatum</div>
+        <div class="small-value">01.03.2004</div>
+      </div>
+    </div>
+
+    <div class="status"><span class="check">✓</span> FISCHERAUSWEIS GÜLTIG</div>
+
+    <div class="qr-wrap">
+      <img src="assets/qr-demo.png" alt="QR-Code zur Ausweisprüfung">
+      <div class="number">Ausweisnummer: FA-2026-00123</div>
+    </div>
+
+    <div class="footer">Digitaler Ausweis · Nur zur Verifikation der angegebenen Daten</div>
+  </section>
+
+  <div class="info">
+    <strong>Hinweis:</strong> Dieser Prototyp zeigt die gewünschte Optik.
+    Der Wallet-Button ist derzeit eine Demo. Für einen echten Apple-/Google-Wallet-Ausweis
+    muss der Pass serverseitig erstellt, signiert und verteilt werden.
+  </div>
+</main>
+
+<script>
+const ua = navigator.userAgent || "";
+const isApple = /iPhone|iPad|iPod|Macintosh/.test(ua) && !/Android/.test(ua);
+const walletText = document.getElementById("walletText");
+const walletButton = document.getElementById("walletButton");
+
+if (!isApple) walletText.textContent = "Hinzufügen zu Google Wallet";
+
+walletButton.addEventListener("click", () => {
+  alert(
+    "Wallet-Integration ist vorbereitet.\\n\\n" +
+    "Für die echte Funktion wird hier später die Apple-Wallet- bzw. Google-Wallet-URL eingebunden."
+  );
+});
+</script>
+</body>
+</html>
