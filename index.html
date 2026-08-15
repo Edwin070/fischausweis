@@ -93,51 +93,49 @@ body{display:flex;justify-content:center;padding:24px 14px 40px}
     <header class="header">
       <div class="logo" aria-hidden="true"></div>
       <div>
-        <div class="org">Fischereiverband</div>
+        <div class="org">Fischereiverein Ingolstadt Deutschland</div>
         <div class="subtitle">Digitaler Fischerausweis</div>
       </div>
     </header>
 
     <div class="hero">
-      <img class="hero-image" src="assets/photo-placeholder.jpg" alt="Passfoto">
+      <img class="hero-image" src="assets/image.png" alt="Passfoto">
     </div>
 
     <div class="details">
       <div>
         <div class="label">Inhaber</div>
-        <div class="value">Max Mustermann</div>
+        <div class="value">Edwin Pfeifer</div>
       </div>
       <div>
         <div class="label">Gültig bis</div>
-        <div class="small-value">31.12.2026</div>
+        <div class="small-value">31.12.2027</div>
       </div>
     </div>
 
     <div class="details">
       <div>
         <div class="label">Ausweis-Nr.</div>
-        <div class="small-value">FA-2026-00123</div>
+        <div class="small-value">FA-2026-74221</div>
       </div>
       <div>
         <div class="label">Geburtsdatum</div>
-        <div class="small-value">01.03.2004</div>
+        <div class="small-value">19.08.2004</div>
       </div>
     </div>
 
     <div class="status"><span class="check">✓</span> FISCHERAUSWEIS GÜLTIG</div>
 
     <div class="qr-wrap">
-      <img src="assets/qr-demo.png" alt="QR-Code zur Ausweisprüfung">
-      <div class="number">Ausweisnummer: FA-2026-00123</div>
+      <img src="assets/Screenshot 2026-08-16 010138.png" alt="QR-Code zur Ausweisprüfung">
+      <div class="number">Ausweisnummer: FA-2026-74221</div>
     </div>
 
     <div class="footer">Digitaler Ausweis · Nur zur Verifikation der angegebenen Daten</div>
   </section>
 
   <div class="info">
-    <strong>Hinweis:</strong> Dieser Prototyp zeigt die gewünschte Optik.
-    Der Wallet-Button ist derzeit eine Demo. Für einen echten Apple-/Google-Wallet-Ausweis
-    muss der Pass serverseitig erstellt, signiert und verteilt werden.
+    <strong>Hinweis:</strong> Zum Überprüfen des Dokuments, bitte den QR-Code mit einem Endgerät scannen. 
   </div>
 </main>
 
@@ -147,7 +145,6 @@ const isApple = /iPhone|iPad|iPod|Macintosh/.test(ua) && !/Android/.test(ua);
 const walletText = document.getElementById("walletText");
 const walletButton = document.getElementById("walletButton");
 
-if (!isApple) walletText.textContent = "Hinzufügen zu Google Wallet";
 
 walletButton.addEventListener("click", () => {
   alert(
