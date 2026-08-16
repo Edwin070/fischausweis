@@ -3,155 +3,883 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f4f5f7">
+<meta name="theme-color" content="#071b3a">
+
 <title>Digitaler Fischerausweis</title>
+
 <style>
-:root{
-  --bg:#f2f3f5;
-  --card:#fff;
-  --text:#17181b;
-  --muted:#6f747b;
-  --line:#e5e7ea;
-  --green:#177245;
-  --green-bg:#e8f6ee;
-  --blue:#0a66ff;
+
+:root {
+    --dark-blue: #071b3a;
+    --blue: #0d2d5c;
+    --blue-light: #16447f;
+    --gold: #d8b35a;
+    --white: #ffffff;
+    --light: #e9eef5;
+    --text: #142033;
+    --muted: #8d9bb0;
+    --green: #31c47c;
 }
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;color:var(--text);background:var(--bg)}
-body{display:flex;justify-content:center;padding:24px 14px 40px}
-.page{width:min(100%,520px)}
-.wallet-btn{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  width:100%;height:54px;border-radius:14px;border:0;
-  background:#050505;color:#fff;font-size:18px;font-weight:700;
-  box-shadow:0 6px 18px rgba(0,0,0,.12);cursor:pointer;
-  margin:0 0 18px;
+
+/* =========================
+   GRUNDLAYOUT
+========================= */
+
+* {
+    box-sizing: border-box;
 }
-.wallet-icon{
-  width:28px;height:21px;border-radius:5px;background:linear-gradient(180deg,#20b95b 0 20%,#ffcd38 20% 40%,#ef5b58 40% 60%,#55a9f4 60% 80%,#7b58cf 80%);
-  position:relative;display:inline-block;
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 }
-.wallet-icon:after{content:"";position:absolute;width:13px;height:13px;border-radius:50%;background:#fff;left:7px;top:4px;opacity:.9}
-.card{
-  overflow:hidden;background:var(--card);border-radius:22px;
-  box-shadow:0 10px 35px rgba(0,0,0,.10);
-  border:1px solid rgba(0,0,0,.05);
+
+body {
+    background:
+        linear-gradient(
+            160deg,
+            #071b3a 0%,
+            #0b2348 45%,
+            #102f5b 100%
+        );
+
+    color: var(--white);
+
+    display: flex;
+    justify-content: center;
+
+    padding: 25px 14px 40px;
 }
-.header{
-  min-height:76px;display:flex;align-items:center;gap:14px;padding:16px 20px;
-  border-bottom:1px solid var(--line);
+
+.page {
+    width: min(100%, 500px);
 }
-.logo{
-  width:42px;height:42px;border-radius:50%;
-  background:radial-gradient(circle at 35% 35%,#67d5b5 0 18%,transparent 19%),
-             conic-gradient(from 30deg,#1f8fff,#55cfa7,#f0c34e,#ef6461,#a95ed6,#1f8fff);
-  flex:none;
+
+
+/* =========================
+   WALLET BUTTON
+========================= */
+
+.wallet-btn {
+
+    width: 100%;
+    height: 54px;
+
+    border: none;
+    border-radius: 13px;
+
+    background: #000000;
+    color: white;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    cursor: pointer;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.25);
 }
-.org{font-size:16px;font-weight:750}
-.subtitle{font-size:12px;color:var(--muted);margin-top:2px}
-.hero{
-  padding:18px 20px 0;
+
+
+/* kleines Wallet-Symbol */
+
+.wallet-icon {
+
+    width: 27px;
+    height: 21px;
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #28bd65 0%,
+            #28bd65 20%,
+            #f1c83b 20%,
+            #f1c83b 40%,
+            #e85a5a 40%,
+            #e85a5a 60%,
+            #54a7f2 60%,
+            #54a7f2 80%,
+            #7954c8 80%
+        );
 }
-.hero-image{
-  width:100%;aspect-ratio:16/7;object-fit:cover;border-radius:13px;
-  display:block;background:#dfe3e7;
+
+
+/* =========================
+   AUSWEIS
+========================= */
+
+.card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0b2852,
+            #071a37
+        );
+
+    border-radius: 22px;
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.4);
+
 }
-.details{
-  display:grid;grid-template-columns:1.35fr .9fr;gap:18px;padding:18px 20px 4px;
+
+
+/* dezentes Muster */
+
+.card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    right: -220px;
+    top: -180px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.07);
+
+    box-shadow:
+        0 0 0 35px rgba(255,255,255,.025),
+        0 0 0 70px rgba(255,255,255,.02);
+
+    pointer-events: none;
 }
-.label{font-size:12px;font-weight:800;letter-spacing:.04em;color:#666b72;text-transform:uppercase}
-.value{font-size:21px;font-weight:650;margin-top:4px}
-.small-value{font-size:17px;font-weight:650;margin-top:4px}
-.status{
-  margin:18px 20px 0;padding:12px 14px;border-radius:12px;
-  background:var(--green-bg);color:var(--green);font-weight:750;
-  display:flex;align-items:center;justify-content:center;gap:8px;
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+
+    position: relative;
+
+    padding: 23px 22px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.13);
 }
-.check{width:22px;height:22px;border-radius:50%;background:var(--green);color:white;display:grid;place-items:center;font-size:13px}
-.qr-wrap{text-align:center;padding:20px 20px 10px}
-.qr-wrap img{width:min(72vw,260px);max-width:260px;display:block;margin:auto}
-.number{font-size:14px;margin-top:10px;color:#333}
-.footer{padding:10px 20px 20px;text-align:center;color:#888;font-size:11px}
-.info{
-  margin-top:14px;padding:16px 18px;background:white;border-radius:16px;
-  border:1px solid var(--line);font-size:13px;color:#5e6369;line-height:1.45;
+
+
+/* Logo */
+
+.logo {
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffffff 0 18%,
+            transparent 19%
+        ),
+        conic-gradient(
+            #d8b35a,
+            #ffffff,
+            #d8b35a,
+            #ffffff,
+            #d8b35a
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
 }
-@media(min-width:700px){
-  body{padding-top:45px}
-  .page{width:480px}
+
+
+/* Titel */
+
+.title-area {
+    flex: 1;
 }
+
+.title {
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    letter-spacing: .08em;
+}
+
+.subtitle {
+
+    margin-top: 3px;
+
+    font-size: 11px;
+
+    color: #b7c4d6;
+
+    letter-spacing: .08em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   AUSWEIS-INHALT
+========================= */
+
+.content {
+
+    position: relative;
+
+    padding: 22px;
+}
+
+
+/* =========================
+   FOTO + DATEN
+========================= */
+
+.identity {
+
+    display: grid;
+
+    grid-template-columns:
+        125px
+        1fr;
+
+    gap: 18px;
+
+    align-items: start;
+}
+
+
+/* Foto */
+
+.photo {
+
+    width: 125px;
+    height: 160px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+
+    border:
+        2px solid rgba(255,255,255,.8);
+
+    background: #dfe4ea;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.25);
+}
+
+
+/* Daten */
+
+.data {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+}
+
+.data-item {
+
+    border-bottom:
+        1px solid rgba(255,255,255,.12);
+
+    padding-bottom: 9px;
+}
+
+.label {
+
+    font-size: 10px;
+
+    color: #aebed2;
+
+    text-transform: uppercase;
+
+    letter-spacing: .08em;
+
+    font-weight: 700;
+}
+
+.value {
+
+    margin-top: 3px;
+
+    font-size: 16px;
+
+    font-weight: 650;
+
+    color: white;
+
+    word-break: break-word;
+}
+
+
+/* =========================
+   AUSWEISNUMMER
+========================= */
+
+.number-box {
+
+    margin-top: 20px;
+
+    padding: 13px 15px;
+
+    border-radius: 9px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.number-label {
+
+    font-size: 10px;
+
+    color: #aebed2;
+
+    text-transform: uppercase;
+
+    letter-spacing: .07em;
+}
+
+.number-value {
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    letter-spacing: .05em;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+
+    margin-top: 15px;
+
+    padding: 11px 14px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(49,196,124,.12);
+
+    border:
+        1px solid rgba(49,196,124,.3);
+
+    color: #64e29c;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: .05em;
+}
+
+.check {
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    color: white;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   TRENNLINIE
+========================= */
+
+.divider {
+
+    height: 1px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    margin:
+        22px 0 18px;
+}
+
+
+/* =========================
+   QR CODE
+========================= */
+
+.qr-section {
+
+    text-align: center;
+}
+
+.qr-title {
+
+    font-size: 11px;
+
+    color: #aebed2;
+
+    text-transform: uppercase;
+
+    letter-spacing: .08em;
+
+    margin-bottom: 12px;
+}
+
+.qr-container {
+
+    background: white;
+
+    padding: 10px;
+
+    width: 190px;
+
+    height: 190px;
+
+    border-radius: 10px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.qr-container img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.qr-description {
+
+    margin-top: 10px;
+
+    font-size: 11px;
+
+    color: #9eacc0;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+
+    padding:
+        15px 22px 20px;
+
+    text-align: center;
+
+    border-top:
+        1px solid rgba(255,255,255,.1);
+
+    color: #8192aa;
+
+    font-size: 9px;
+
+    letter-spacing: .03em;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 390px) {
+
+    .identity {
+
+        grid-template-columns:
+            105px
+            1fr;
+
+        gap: 13px;
+    }
+
+    .photo {
+
+        width: 105px;
+        height: 140px;
+    }
+
+    .value {
+
+        font-size: 14px;
+    }
+
+    .content {
+
+        padding: 18px;
+    }
+
+}
+
 </style>
 </head>
+
+
 <body>
+
 <main class="page">
-  <button class="wallet-btn" id="walletButton" type="button" aria-label="Zu Wallet hinzufügen">
-    <span class="wallet-icon"></span>
-    <span id="walletText">Hinzufügen zu Apple Wallet</span>
-  </button>
 
-  <section class="card">
-    <header class="header">
-      <div class="logo" aria-hidden="true"></div>
-      <div>
-        <div class="org">Fischereiverein Ingolstadt Deutschland</div>
-        <div class="subtitle">Digitaler Fischerausweis</div>
-      </div>
-    </header>
 
-    <div class="hero">
-      <img class="hero-image" src="assets/image.png" alt="Passfoto">
-    </div>
+    <!-- =========================
+         WALLET
+    ========================== -->
 
-    <div class="details">
-      <div>
-        <div class="label">Inhaber</div>
-        <div class="value">Edwin Pfeifer</div>
-      </div>
-      <div>
-        <div class="label">Gültig bis</div>
-        <div class="small-value">31.12.2027</div>
-      </div>
-    </div>
+    <button
+        class="wallet-btn"
+        id="walletButton"
+        type="button">
 
-    <div class="details">
-      <div>
-        <div class="label">Ausweis-Nr.</div>
-        <div class="small-value">FA-2026-74221</div>
-      </div>
-      <div>
-        <div class="label">Geburtsdatum</div>
-        <div class="small-value">19.08.2004</div>
-      </div>
-    </div>
+        <span class="wallet-icon"></span>
 
-    <div class="status"><span class="check">✓</span> FISCHERAUSWEIS GÜLTIG</div>
+        <span id="walletText">
+            Hinzufügen zu Apple Wallet
+        </span>
 
-    <div class="qr-wrap">
-      <img src="assets/Screenshot 2026-08-16 010138.png" alt="QR-Code zur Ausweisprüfung">
-      <div class="number">Ausweisnummer: FA-2026-74221</div>
-    </div>
+    </button>
 
-    <div class="footer">Digitaler Ausweis · Nur zur Verifikation der angegebenen Daten</div>
-  </section>
 
-  <div class="info">
-    <strong>Hinweis:</strong> Zum Überprüfen des Dokuments, bitte den QR-Code mit einem Endgerät scannen. 
-  </div>
+
+    <!-- =========================
+         AUSWEIS
+    ========================== -->
+
+    <section class="card">
+
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div class="logo"></div>
+
+            <div class="title-area">
+
+                <div class="title">
+                    FISCHEREIAUSWEIS
+                </div>
+
+                <div class="subtitle">
+                    Digitaler Ausweis
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <div class="content">
+
+
+            <!-- =========================
+                 FOTO + PERSON
+            ========================== -->
+
+            <div class="identity">
+
+
+                <!-- DEIN FOTO -->
+
+                <img
+                    class="photo"
+                    src="assets/photo-placeholder.jpg"
+                    alt="Passfoto"
+                >
+
+
+                <!-- PERSONENDATEN -->
+
+                <div class="data">
+
+
+                    <div class="data-item">
+
+                        <div class="label">
+                            Familienname, Vorname
+                        </div>
+
+                        <div class="value">
+                            Max Mustermann
+                        </div>
+
+                    </div>
+
+
+                    <div class="data-item">
+
+                        <div class="label">
+                            Geburtsdatum
+                        </div>
+
+                        <div class="value">
+                            12.03.1979
+                        </div>
+
+                    </div>
+
+
+                    <div class="data-item">
+
+                        <div class="label">
+                            Geburtsort
+                        </div>
+
+                        <div class="value">
+                            Essen
+                        </div>
+
+                    </div>
+
+
+                    <div class="data-item">
+
+                        <div class="label">
+                            Wohnort
+                        </div>
+
+                        <div class="value">
+                            Köln
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 AUSWEISNUMMER
+            ========================== -->
+
+            <div class="number-box">
+
+                <div>
+
+                    <div class="number-label">
+                        Fischerausweis-Nr.
+                    </div>
+
+                    <div class="number-value">
+                        FA-2026-00123
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div class="number-label">
+                        Gültig bis
+                    </div>
+
+                    <div class="number-value">
+                        31.12.2026
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 STATUS
+            ========================== -->
+
+            <div class="status">
+
+                <span class="check">
+                    ✓
+                </span>
+
+                FISCHERAUSWEIS GÜLTIG
+
+            </div>
+
+
+
+            <!-- TRENNLINIE -->
+
+            <div class="divider"></div>
+
+
+
+            <!-- =========================
+                 QR CODE
+            ========================== -->
+
+            <div class="qr-section">
+
+                <div class="qr-title">
+                    Ausweis online überprüfen
+                </div>
+
+
+                <div class="qr-container">
+
+                    <img
+                        src="assets/qr-demo.png"
+                        alt="QR-Code zur Überprüfung"
+                    >
+
+                </div>
+
+
+                <div class="qr-description">
+
+                    QR-Code scannen, um die
+                    digitale Gültigkeit dieses
+                    Ausweises zu überprüfen.
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            Digitaler Fischerausweis ·
+            Elektronische Verifikation
+
+        </div>
+
+
+    </section>
+
 </main>
 
+
+
 <script>
+
+/* =========================
+   APPLE / GOOGLE WALLET
+========================= */
+
 const ua = navigator.userAgent || "";
-const isApple = /iPhone|iPad|iPod|Macintosh/.test(ua) && !/Android/.test(ua);
-const walletText = document.getElementById("walletText");
-const walletButton = document.getElementById("walletButton");
+
+const isApple =
+    /iPhone|iPad|iPod|Macintosh/.test(ua)
+    &&
+    !/Android/.test(ua);
 
 
-walletButton.addEventListener("click", () => {
-  alert(
-    "Wallet-Integration ist vorbereitet.\\n\\n" +
-    "Für die echte Funktion wird hier später die Apple-Wallet- bzw. Google-Wallet-URL eingebunden."
-  );
-});
+const walletText =
+    document.getElementById("walletText");
+
+
+const walletButton =
+    document.getElementById("walletButton");
+
+
+if (!isApple) {
+
+    walletText.textContent =
+        "Hinzufügen zu Google Wallet";
+
+}
+
+
+walletButton.addEventListener(
+    "click",
+    () => {
+
+        alert(
+            "Die Wallet-Funktion wird später mit Apple Wallet bzw. Google Wallet verbunden."
+        );
+
+    }
+);
+
 </script>
+
+
 </body>
 </html>
